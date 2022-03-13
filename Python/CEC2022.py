@@ -545,16 +545,19 @@ def cf_cal(x, nx, Os, delta, bias, fit, cf_num):
 
 def cec22_test_func(x, nx, mx, func_num):
   global OShift, M, y, z, x_bound, ini_flag, n_flag, func_flag, SS
-  
-  OShift = None 
-  M = None 
-  y = None
-  z = None 
-  x_bound = None 
-  ini_flag = 0
-  n_flag = None 
-  func_flag = None
-  SS = None
+
+  try:
+    ini_flag
+  except NameError:
+    OShift = None 
+    M = None 
+    y = None
+    z = None 
+    x_bound = None 
+    ini_flag = 0
+    n_flag = None 
+    func_flag = None
+    SS = None
   cf_num = 10
   if (func_num < 1)|(func_num > 12):
     print('\nError: Test function %d is not defined.\n' %func_num)
@@ -625,62 +628,62 @@ def cec22_test_func(x, nx, mx, func_num):
     n_flag = nx
     func_flag = func_num
     ini_flag = 1
-    f = np.zeros((mx,))
-    for i in range(mx):
-      if func_num == 1:
-        ff = zakharov_func(x, nx, OShift, M, 1, 1)
-        f[i] = ff + 300.0
-        break
-      elif func_num == 2:
-        ff = rosenbrock_func(x,  nx, OShift, M, 1, 1)
-        f[i] = ff + 400.0
-        break
-      elif func_num == 3:
-        ff = schaffer_F7_func(x, nx, OShift, M, 1, 1)
-        f[i] = ff + 600.0
-        break
-      elif func_num == 4:
-        ff = step_rastrigin_func(x,  nx, OShift, M, 1, 1)
-        f[i] = ff + 800.0
-        break
-      elif func_num == 5:
-        ff = levy_func(x, nx, OShift, M, 1, 1)
-        f[i] = ff + 900.0
-        break
-      elif func_num == 6:
-        ff = hf02(x,  nx, OShift, M, SS, 1, 1)
-        f[i] = ff + 1800.0
-        break
-      elif func_num == 7:
-        ff = hf10(x, nx, OShift, M, SS, 1, 1)
-        f[i] = ff + 2000.0
-        break
-      elif func_num == 8:
-        ff = hf06(x, nx, OShift, M, SS, 1, 1)
-        f[i] = ff + 2200.0
-        break
-      elif func_num == 9:
-        ff = cf01(x,  nx, OShift, M, 1, 1)
-        f[i] = ff + 2300.0
-        break
-      elif func_num == 10:
-        ff = cf02(x,  nx, OShift, M, 1, 1)
-        f[i] = ff + 2400.0
-        break
-      elif func_num == 11:
-        ff = cf06(x, nx, OShift, M, 1, 1)
-        f[i] = ff + 2600.0
-        break
-      elif func_num == 12:
-        ff = cf07(x, nx, OShift, M, 1, 1)
-        f[i] = ff + 2700.0
-        break
-      else:
-        print("\nError: There are only 10 test functions in this test suite!\n")
-        f[i] = 0.0
-        break
-    
-    return f
+  f = np.zeros((mx,))
+  for i in range(mx):
+    if func_num == 1:
+      ff = zakharov_func(x, nx, OShift, M, 1, 1)
+      f[i] = ff + 300.0
+      break
+    elif func_num == 2:
+      ff = rosenbrock_func(x,  nx, OShift, M, 1, 1)
+      f[i] = ff + 400.0
+      break
+    elif func_num == 3:
+      ff = schaffer_F7_func(x, nx, OShift, M, 1, 1)
+      f[i] = ff + 600.0
+      break
+    elif func_num == 4:
+      ff = step_rastrigin_func(x,  nx, OShift, M, 1, 1)
+      f[i] = ff + 800.0
+      break
+    elif func_num == 5:
+      ff = levy_func(x, nx, OShift, M, 1, 1)
+      f[i] = ff + 900.0
+      break
+    elif func_num == 6:
+      ff = hf02(x,  nx, OShift, M, SS, 1, 1)
+      f[i] = ff + 1800.0
+      break
+    elif func_num == 7:
+      ff = hf10(x, nx, OShift, M, SS, 1, 1)
+      f[i] = ff + 2000.0
+      break
+    elif func_num == 8:
+      ff = hf06(x, nx, OShift, M, SS, 1, 1)
+      f[i] = ff + 2200.0
+      break
+    elif func_num == 9:
+      ff = cf01(x,  nx, OShift, M, 1, 1)
+      f[i] = ff + 2300.0
+      break
+    elif func_num == 10:
+      ff = cf02(x,  nx, OShift, M, 1, 1)
+      f[i] = ff + 2400.0
+      break
+    elif func_num == 11:
+      ff = cf06(x, nx, OShift, M, 1, 1)
+      f[i] = ff + 2600.0
+      break
+    elif func_num == 12:
+      ff = cf07(x, nx, OShift, M, 1, 1)
+      f[i] = ff + 2700.0
+      break
+    else:
+      print("\nError: There are only 10 test functions in this test suite!\n")
+      f[i] = 0.0
+      break
+  
+  return f
     
 class cec2022_func():
   
